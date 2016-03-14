@@ -13,6 +13,7 @@ import city.cs.engine.SolidFixture;
 import city.cs.engine.Walker;
 import city.cs.engine.World;
 import java.awt.event.KeyEvent;
+import levels.Level;
 import org.jbox2d.common.Vec2;
 
 /**
@@ -21,34 +22,30 @@ import org.jbox2d.common.Vec2;
  */
 public class SuperMario extends Walker {
 
-    private static final float JUMPING_SPEED = 15;
+    private static final float JUMPING_SPEED = 10;
     private static final float WALKING_SPEED = 3;
     private boolean isMoving=false,released=true;
     // Remember:  using the keyword static below means the fields shape and image belong to the class, rather than any instance. 
     // That means there is a single shape and image for all instances of the class.
     private static final Shape face = new PolygonShape(
-            0.206f,0.454f, 0.39f,0.191f, 0.383f,-0.075f, 0.161f,-0.202f, -0.244f,-0.199f, -0.42f,-0.071f, -0.427f,0.098f, -0.131f,0.45f);
+            0.095f,0.655f, 0.4f,0.6f, 0.525f,0.105f, 0.315f,-0.23f, -0.41f,-0.24f, -0.505f,0.135f, -0.435f,0.59f);
 
     private static final Shape body = new PolygonShape(
-            0.143f,-0.217f, 0.266f,-0.334f, 0.21f,-0.731f, -0.251f,-0.735f, -0.304f,-0.551f, -0.304f,-0.27f, -0.247f,-0.21f);
+            0.32f,-0.23f, 0.505f,-0.37f, 0.5f,-0.985f, -0.515f,-0.99f, -0.52f,-0.89f, -0.375f,-0.23f);
     private static BodyImage imageStill =
-        new BodyImage("data/mario_stop.png", 3);
+        new BodyImage("data/mario_stop.png", 2);
 
-    private String name = "Mario";
     private int orangeCount;
     private boolean moving, //true = mario is moving , false = mario is not moving
                     direction;//true = moving right  ,  false = moving left
-    private World world;
+    private Level world;
 
-    public SuperMario(World world) {
+    public SuperMario(Level world) {
         super(world);
         this.world = world;
         Fixture faceFixture = new SolidFixture(this,face);
         Fixture bodyFixture = new SolidFixture(this,body);
-        
         addImage(imageStill);
-        orangeCount = 0;
-        setName(name);
         setDirection(true);
     }
 
@@ -89,7 +86,7 @@ public class SuperMario extends Walker {
                 if (Math.abs(v.y) < 0.01f) {
                     jump(JUMPING_SPEED); 
                     removeAllImages();
-                    addImage(new BodyImage("data/mario_stop.png",3));
+                    addImage(new BodyImage("data/mario_stop.png",2));
                 }
                 break;
                 
@@ -97,19 +94,19 @@ public class SuperMario extends Walker {
                 startWalking(-WALKING_SPEED); 
                 setDirection(false);
                 removeAllImages();
-                addImage(new BodyImage("data/mario_move_left.png",3));
+                addImage(new BodyImage("data/mario_move_left.png",2));
                 break;
                 
             case KeyEvent.VK_RIGHT: // walk right
                 startWalking(WALKING_SPEED); 
                 setDirection(true);
                 removeAllImages();
-                addImage(new BodyImage("data/mario_move_right.png",3));
+                addImage(new BodyImage("data/mario_move_right.png",2));
                 break;
             
             case KeyEvent.VK_SPACE:
                 if(released){
-                    new FireBall(world, getPosition(), getDirection());
+                    FireBall fireBall = new FireBall(world, getPosition(), getDirection());
                     released=false;
                 }
                 break;

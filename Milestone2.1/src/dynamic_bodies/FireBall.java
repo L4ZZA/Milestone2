@@ -35,7 +35,7 @@ public class FireBall extends DynamicBody{
         setName(name);
         ballShape = new CircleShape(radius);
         Fixture fixture = new SolidFixture(this, ballShape);
-        ballRight = new BodyImage("data/fireBall.png", 2*radius*2);
+        ballRight = new BodyImage("data/fireBall.png", 2*radius);
         setGravityScale(0);
     }
     
@@ -49,7 +49,7 @@ public class FireBall extends DynamicBody{
             setLinearVelocity(new Vec2(velocity,0));
         }
         else{
-            ballLeft = new BodyImage("data/fireBallLeft.png", 2*radius*2);
+            ballLeft = new BodyImage("data/fireBallLeft.png", 2*radius);
             addImage(ballLeft);
             setPosition(position.add(new Vec2(-x,0)));
             setLinearVelocity(new Vec2(-velocity,0));
@@ -73,8 +73,5 @@ public class FireBall extends DynamicBody{
 
     public void setDirection(boolean direction) {
         this.direction = direction;
-    }
-    
-    
-    
+    }    
 }

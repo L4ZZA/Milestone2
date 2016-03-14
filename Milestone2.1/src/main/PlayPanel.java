@@ -35,7 +35,7 @@ public class PlayPanel extends UserView {
         
         titleFont=new Font("TimesRoman", Font.PLAIN, 18);
         warning = new Font("TimesRoman", Font.BOLD,30);
-        bg = new ImageIcon("data/bg2.png").getImage();
+        bg = new ImageIcon("data/bg1.png").getImage();
      
         titleColor = new Color(255,255,255);
          
