@@ -27,6 +27,7 @@ class CollapsablePanel extends JPanel {
     private boolean selected;
     JPanel contentPanel_;
     JLabel headerLabel;
+    JLabel home,pause,unpause,exit;
     final int OFFSET = 50, PAD = 5;
     
     public CollapsablePanel(JLabel label) {
@@ -62,6 +63,12 @@ class CollapsablePanel extends JPanel {
             }
             
         });
+        
+        home=new JLabel("Home");
+        pause = new JLabel("Pause");
+        unpause = new JLabel("Unpause");
+        exit = new JLabel("Exit");
+        
         contentPanel_ = new JPanel(new GridBagLayout());
         contentPanel_.setBackground(Color.WHITE);
         {
@@ -69,13 +76,13 @@ class CollapsablePanel extends JPanel {
             gbc.insets = new Insets(5, 3, 5, 3);
             gbc.gridx = 0;
             gbc.gridwidth = gbc.RELATIVE;
-            contentPanel_.add(new JLabel("Gioca"), gbc);
+            contentPanel_.add(home, gbc);
             gbc.gridwidth = gbc.REMAINDER;
-            contentPanel_.add(new JLabel("Istruzioni"), gbc);
+            contentPanel_.add(pause, gbc);
             gbc.gridwidth = gbc.RELATIVE;
-            contentPanel_.add(new JLabel("Personalize"), gbc);
+            contentPanel_.add(unpause, gbc);
             gbc.gridwidth = gbc.REMAINDER;
-            contentPanel_.add(new JLabel("Esci"), gbc);
+            contentPanel_.add(exit, gbc);
             
         }
         
@@ -87,8 +94,105 @@ class CollapsablePanel extends JPanel {
         JLabel padding = new JLabel();
         gbc.weighty = 1.0;
         add(padding, gbc); 
+        
+        
+        home.addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Frame.goHome();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+        
+        pause.addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Frame.pause();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+        
+        unpause.addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Frame.unpause();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+        
+        exit.addMouseListener(new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.exit(0);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
- 
+    
     public void toggleSelection() {
         selected = !selected;
  

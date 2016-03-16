@@ -88,7 +88,6 @@ public class HomePanel extends JPanel{
     public void unlockLevel(int level) {
         LevelSelector l = levels[level-1];
         l.unlockLevel();
-        System.out.println(l.currentLevel);
     }
     
     
@@ -125,7 +124,7 @@ public class HomePanel extends JPanel{
         
         void unlockLevel(){
             if(locked){
-                locked =true;
+                locked =false;
             }
         }
         

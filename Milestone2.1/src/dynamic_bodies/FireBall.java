@@ -28,7 +28,7 @@ public class FireBall extends DynamicBody{
     private boolean direction;
     private static final int gravity=0;
     private static final float velocity=10;
-    private static float radius = 0.25f;
+    private static float radius = 0.35f;
     
     public FireBall(World w) {
         super(w);
@@ -59,9 +59,10 @@ public class FireBall extends DynamicBody{
 
             @Override
             public void collide(CollisionEvent e) {
-              //  if(!e.getOtherBody().getName().equals("Mario")){
-                    e.getReportingBody().destroy();
-               // }
+                if(e.getOtherBody().getClass() == Plant.class){
+                    e.getOtherBody().destroy();
+                }
+                destroy();
             }
             
         });

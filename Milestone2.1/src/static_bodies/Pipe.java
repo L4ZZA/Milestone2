@@ -7,22 +7,19 @@ package static_bodies;
 
 import city.cs.engine.BodyImage;
 import city.cs.engine.World;
-import java.awt.Color;
 import org.jbox2d.common.Vec2;
 
 /**
  *
  * @author Pietro
  */
-public class Ground extends Walkable{
+public class Pipe extends Walkable{
 
-    private static BodyImage image= new BodyImage("data/Platform.png");
+    private static BodyImage image= new BodyImage("data/pipe.png",2);
     
-    public Ground(World w) {
-        super(w,16f, 0.5f,new Vec2(0,-11.5f));
-        setFillColor(new Color(128, 64, 0));
-        //addImage(image);
-        
+    public Pipe(World w, Vec2 position) {
+        super(w, 1.15f, 1f, position);
+        addImage(image);
     }
     
 }

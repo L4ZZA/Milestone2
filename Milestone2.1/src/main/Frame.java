@@ -5,15 +5,22 @@
  */
 package main;
 
+import city.cs.engine.DebugViewer;
 import city.cs.engine.Walker;
 import dynamic_bodies.SuperMario;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import levels.Level;
 import levels.Level1;
 import levels.Level2;
+import levels.Level3;
+import levels.Level4;
+import levels.Level5;
+import levels.Level6;
 
 /**
  *
@@ -46,6 +53,9 @@ public class Frame {
         window.setVisible(true);
         controller = new Controller();
         window.addKeyListener(controller);
+        /*to set the frame in the middle of the screen*/
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
     }
     
     /**
@@ -57,49 +67,67 @@ public class Frame {
      */
     public static void startLevel(int level){
         pane = window.getContentPane();
-        System.out.println(pane.getClass());
-        //JFrame debugView = new DebugViewer(lv, HomePanel.WIDTH * HomePanel.SCALE, HomePanel.HEIGHT * HomePanel.SCALE);
         
         switch(level){
             case 1:
-                currentLevel=1;
+                currentLevel=level;
+                System.out.println(currentLevel);
                 world= new Level1(level);
                 controller.setWorld(world);
                 controller.setPlayer(world.getPlayer());
                 
                 view = new PlayPanel(world);
-                view.setGridResolution(1);
-                homepage.unlockLevel(level+1);
                 break;
             case 2:
-                currentLevel=2;
+                currentLevel=level;
+                System.out.println(currentLevel);
                 world= new Level2(level);
                 controller.setWorld(world);
                 controller.setPlayer(world.getPlayer());
                 
-                view = new PlayPanel(world,"data/bg4.png");
-                view.setGridResolution(1);
+                view = new PlayPanel(world,"data/bg2.png");
                 break;
             case 3:
-                currentLevel=3;
-                System.out.println(level);
+                currentLevel=level;
+                System.out.println(currentLevel);
+                world= new Level3(level);
+                controller.setWorld(world);
+                controller.setPlayer(world.getPlayer());
+                
+                view = new PlayPanel(world,"data/bg3.png");
                 break;
             case 4:
-                currentLevel=4;
-                System.out.println(level);
+                currentLevel=level;
+                System.out.println(currentLevel);
+                world= new Level4(level);
+                controller.setWorld(world);
+                controller.setPlayer(world.getPlayer());
+                
+                view = new PlayPanel(world,"data/bg4.png");
                 break;
             case 5:
-                currentLevel=5;
-                System.out.println(level);
+                currentLevel=level;
+                System.out.println(currentLevel);
+                world= new Level5(level);
+                controller.setWorld(world);
+                controller.setPlayer(world.getPlayer());
+                
+                view = new PlayPanel(world,"data/bg5.png");
                 break;
             case 6:
-                currentLevel=6;
-                System.out.println(level);
+                currentLevel=level;
+                System.out.println(currentLevel);
+                world= new Level6(level);
+                controller.setWorld(world);
+                controller.setPlayer(world.getPlayer());
+                
+                view = new PlayPanel(world,"data/bg5.png");
                 break;
             default:
                 System.out.println("Error unexisting level: "+level);
         }
-        pane.removeAll();
+        world.setView(view);
+        //JFrame debugView = new DebugViewer(world, Frame.WIDTH * Frame.SCALE, Frame.HEIGHT * Frame.SCALE);
         window.setContentPane(view);
         window.repaint();
         window.revalidate();
@@ -110,7 +138,8 @@ public class Frame {
      * 
      * @param l the current level that you're playing
      */
-    public static void nextLevel(){
+    public static void nextLevel(int currentlevel){
+        homepage.unlockLevel(currentlevel+1);
         world.stop();
         startLevel(currentLevel+1);
     }
@@ -126,15 +155,20 @@ public class Frame {
     /**
      * restart the game
      */
-    public static void restart(){
+    public static void unpause(){
         if(!world.isRunning())
             world.start();
     }
     
-    public static void restartGame(){
-        world.stop();
+    public static void restartLevel(){
         currentLevel--;
-        nextLevel();
+        nextLevel(currentLevel);
+    }
+    
+    public static void goHome(){
+        window.setContentPane(homepage);
+        window.repaint();
+        window.revalidate();
     }
     
     /**
@@ -163,7 +197,5 @@ public class Frame {
         public void setPlayer(SuperMario player) {
             this.mario = player;
         }
-        
-        
     }
 }
