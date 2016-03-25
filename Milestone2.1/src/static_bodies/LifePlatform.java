@@ -16,6 +16,7 @@ import city.cs.engine.World;
 import dynamic_bodies.BonusLife;
 import dynamic_bodies.SuperMario;
 import java.awt.Color;
+import levels.Level;
 import org.jbox2d.common.Vec2;
 
 /**
@@ -40,11 +41,11 @@ public class LifePlatform extends Walkable{
      * @param i index of the loop, used to set the relative position 
      * @param mario at the moment not utilised, but I was trying to use this object reference to develop the listener inside this class instead of the world class 
      */
-    public LifePlatform(World world, Vec2 pos, SuperMario mario){
+    public LifePlatform(Level world, Vec2 pos){
         super(world,0.5f, 0.5f,pos);
         this.world = world;
         done= false;
-        this.mario = mario;
+        this.mario = world.getActor();
         addImage(firstImage);
         position = pos;
         addCollisionListener(new Collision(this));
@@ -77,8 +78,8 @@ public class LifePlatform extends Walkable{
         
         @Override
         public void collide(CollisionEvent e) {
-            if(e.getOtherBody().getClass() == SuperMario.class && !done && 
-                    e.getOtherBody().getPosition().y < p.BOTTOM){
+            if(e.getOtherBody()== mario && !done && 
+                    mario.getPosition().y < getPosition().y){
                     BonusLife bl = new BonusLife(world,p.getPosition());
                     done = true;
                     removeAllImages();

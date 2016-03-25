@@ -31,7 +31,7 @@ public class Level1 extends Level {
         Plant plant = new Plant(this, new Vec2(pipe.getBound("left")+pipe.getWidth(),pipe.getBound("top")));
         mario = new SuperMario(this, new Vec2(g.getBound("left")+2, g.getBound("top")+1));
         
-        Princess princess = new Princess(this,new Vec2(g.getBound("right")-1, g.getBound("top")+1));
+        Princess princess = new Princess(this,new Vec2(g.getBound("right")-8, g.getBound("top")+1));
         Rose r = new Rose(this, new Vec2(g.getPosition().x+1, g.getBound("top")));
         Rose rr = new Rose(this, new Vec2(g.getPosition().x-1, g.getBound("top")));
     }

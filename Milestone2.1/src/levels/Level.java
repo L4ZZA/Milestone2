@@ -49,6 +49,10 @@ public abstract class Level extends World{
         return stepListener.stepCount;
     }
     
+    public Tracker getStepListener(){
+        return stepListener;
+    }
+    
     public int getNumberOfRoses(){
         return nRoses;
     }
@@ -60,7 +64,12 @@ public abstract class Level extends World{
     public abstract boolean isCompleted();
     
     // get player
-    public SuperMario getPlayer(){
+        
+    public Level getWorld() {
+        return this;
+    }
+    
+    public SuperMario getActor() {
         return mario;
     }
     

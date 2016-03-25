@@ -24,15 +24,11 @@ import static_bodies.Platform;
  *
  * @author Pietro
  */
-public class Level6 extends Level{
+public class Level7 extends Level{
     
-    public Level6(int l){
+    public Level7(int l){
         currentLevel = l;
         
-        Ground g = new Ground(this);
-        mario = new SuperMario(this, new Vec2(g.getBound("left")+2, g.getBound("top")+1));
-        Pipe pipe = new Pipe(this, new Vec2(-5f,g.getBound("top")+1));
-        Plant plant = new Plant(this, new Vec2(pipe.getBound("left")+pipe.getWidth(),pipe.getBound("top")));
     }
 
     @Override

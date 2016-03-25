@@ -5,6 +5,7 @@
  */
 package main;
 
+import city.cs.engine.Body;
 import city.cs.engine.DebugViewer;
 import city.cs.engine.Walker;
 import dynamic_bodies.SuperMario;
@@ -74,7 +75,7 @@ public class Frame {
                 System.out.println(currentLevel);
                 world= new Level1(level);
                 controller.setWorld(world);
-                controller.setPlayer(world.getPlayer());
+                controller.setPlayer(world.getActor());
                 
                 view = new PlayPanel(world);
                 break;
@@ -83,7 +84,7 @@ public class Frame {
                 System.out.println(currentLevel);
                 world= new Level2(level);
                 controller.setWorld(world);
-                controller.setPlayer(world.getPlayer());
+                controller.setPlayer(world.getActor());
                 
                 view = new PlayPanel(world,"data/bg2.png");
                 break;
@@ -92,7 +93,7 @@ public class Frame {
                 System.out.println(currentLevel);
                 world= new Level3(level);
                 controller.setWorld(world);
-                controller.setPlayer(world.getPlayer());
+                controller.setPlayer(world.getActor());
                 
                 view = new PlayPanel(world,"data/bg3.png");
                 break;
@@ -101,7 +102,7 @@ public class Frame {
                 System.out.println(currentLevel);
                 world= new Level4(level);
                 controller.setWorld(world);
-                controller.setPlayer(world.getPlayer());
+                controller.setPlayer(world.getActor());
                 
                 view = new PlayPanel(world,"data/bg4.png");
                 break;
@@ -110,18 +111,18 @@ public class Frame {
                 System.out.println(currentLevel);
                 world= new Level5(level);
                 controller.setWorld(world);
-                controller.setPlayer(world.getPlayer());
+                controller.setPlayer(world.getActor());
                 
-                view = new PlayPanel(world,"data/bg5.png");
+                view = new PlayPanel(world,"data/bg3.png");
                 break;
             case 6:
                 currentLevel=level;
                 System.out.println(currentLevel);
                 world= new Level6(level);
                 controller.setWorld(world);
-                controller.setPlayer(world.getPlayer());
+                controller.setPlayer(world.getActor());
                 
-                view = new PlayPanel(world,"data/bg5.png");
+                view = new PlayPanel(world,"data/bg1.png");
                 break;
             default:
                 System.out.println("Error unexisting level: "+level);

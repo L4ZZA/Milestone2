@@ -29,6 +29,8 @@ public class Level5 extends Level{
         //remember to put each walkable no more than 5 points above the closest one
         // the player might not be able to reach it
         Ground g = new Ground(this);
+        mario = new SuperMario(this, new Vec2(g.getBound("left")+2, g.getBound("top")+1));
+        
         Platform p = new Platform(this, new Vec2(2.5f,1));
         Platform pp =  new Platform(this, new Vec2(-9,-4f));
         Platform ppp = new Platform(this, new Vec2(10,6));
@@ -38,7 +40,6 @@ public class Level5 extends Level{
         goomba = new Goomba(this,new Vec2(goombaPlatform.getPosition().x,goombaPlatform.getBound("top")));
         goomba.setLinearVelocity(new Vec2(6.5f,0));
         Platform pppp = new Platform(this,new Vec2(goombaPlatform.getPosition().x,ppp.getPosition().y));
-        mario = new SuperMario(this, new Vec2(g.getBound("left")+2, g.getBound("top")+1));
         
         Pipe pipe2 = new Pipe(this, p.getPosition().addLocal(0, 1.5f));
         Plant plant2 = new Plant(this, new Vec2(pipe2.getBound("left")+pipe2.getWidth(),pipe2.getBound("top")));
@@ -47,7 +48,7 @@ public class Level5 extends Level{
         Rose r = new Rose(this, new Vec2(pppp.getPosition().x-pppp.getWidth()+1, pppp.getBound("top")));
         Rose rr = new Rose(this, new Vec2(pppp.getPosition().x+pppp.getWidth()-1, pppp.getBound("top")));
         Rose rrr = new Rose(this, new Vec2(0, g.getBound("top")));
-        LifePlatform lp = new LifePlatform(this, new Vec2(8,-6),mario);
+        LifePlatform lp = new LifePlatform(this, new Vec2(8,-6));
         setStepListener();
     }
 

@@ -8,12 +8,17 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  *
@@ -36,7 +41,7 @@ public class HomePanel extends JPanel{
         super(new BorderLayout());
         setPreferredSize(new Dimension(Frame.WIDTH*Frame.SCALE,Frame.HEIGHT*Frame.SCALE));
         setMinimumSize(new Dimension(Frame.WIDTH*Frame.SCALE,Frame.HEIGHT*Frame.SCALE));
-        
+        setOpaque(true);
         GridLayout grid = new GridLayout(2,numberOfLevels/2);
         
         page = new JPanel(new BorderLayout());
@@ -71,7 +76,6 @@ public class HomePanel extends JPanel{
                 levels[i] = new LevelSelector(i+1,false);
             else
                 levels[i] = new LevelSelector(i+1);
-            levels[i].setForeground(Color.BLACK);
             levelContainers[i].add(levels[i], BorderLayout.CENTER);
         }
     }
@@ -100,19 +104,33 @@ public class HomePanel extends JPanel{
 
         int currentLevel;
         boolean locked;
-        
+        ImageIcon lock = new ImageIcon("data/lock.png");
+        ImageIcon unlock = new ImageIcon("data/unlock.png");
         LevelSelector(int levelNumber){
-            super("lv"+(levelNumber), JLabel.CENTER);
+            super("", JLabel.CENTER);
+            super.setForeground(Color.WHITE);
+            setFont(new Font("Times New Roman", Font.BOLD,90));
+            setVerticalTextPosition(JLabel.CENTER);
+            setHorizontalTextPosition(JLabel.CENTER);
+            
+            Border paddingBorder = BorderFactory.createEmptyBorder(30,30,30,30);
+            this.setBorder(BorderFactory.createCompoundBorder(null,paddingBorder)); 
+            
             locked = true;
+            setIcon(lock);
             addMouseListener(this);
             currentLevel = levelNumber;
         }
         
         LevelSelector(int levelNumber, boolean locked){
-            super("lv"+(levelNumber), JLabel.CENTER);
-            this.locked = locked;
-            addMouseListener(this);
-            currentLevel = levelNumber;
+           this(levelNumber);
+           this.locked = locked;
+           
+           setText(""+currentLevel);
+           setIcon(unlock);
+           int IMAGE_WIDTH = unlock.getIconWidth();
+           setIconTextGap(-IMAGE_WIDTH);
+           revalidate();
         }
         
         
@@ -125,6 +143,8 @@ public class HomePanel extends JPanel{
         void unlockLevel(){
             if(locked){
                 locked =false;
+                setText(""+currentLevel);
+                setIcon(unlock);
             }
         }
         

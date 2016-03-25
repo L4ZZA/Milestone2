@@ -45,7 +45,7 @@ public class Level4 extends Level{
         Princess princess = new Princess(this,new Vec2(ppp.getBound("right")-1, ppp.getBound("top")));
         Rose r = new Rose(this, new Vec2(p.getPosition().x-p.getWidth()+1, p.getBound("top")));
         Rose rr = new Rose(this, new Vec2(p.getPosition().x+p.getWidth()-1, p.getBound("top")));
-        LifePlatform lp = new LifePlatform(this, new Vec2(8,-6),mario);
+        LifePlatform lp = new LifePlatform(this, new Vec2(8,-6));
         setStepListener();
     }
 

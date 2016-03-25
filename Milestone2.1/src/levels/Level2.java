@@ -30,19 +30,20 @@ public class Level2 extends Level{
         currentLevel = l;
         nRoses=2;
         Ground g = new Ground(this);
+        //remember to put each walkable no more than 5 points above the closest one
+        // the player might not be able to reach it
+        mario = new SuperMario(this, new Vec2(g.getBound("left")+2, g.getBound("top")+1));
+        
         Pipe pipe = new Pipe(this, new Vec2(-4f,g.getBound("top")+1));
         Plant plant = new Plant(this, new Vec2(pipe.getBound("left")+pipe.getWidth(),pipe.getBound("top")));
-        LifePlatform lp = new LifePlatform(this, new Vec2(1,-6),mario);
+        LifePlatform lp = new LifePlatform(this, new Vec2(1,-6));
         Platform p = new Platform(this, new Vec2(8,-3));
         
         Princess princess = new Princess(this,new Vec2(p.getBound("right")-1, p.getBound("top")+1));
         Rose r = new Rose(this, new Vec2(pipe.getPosition().x-3, g.getBound("top")));
         Rose rr = new Rose(this, new Vec2(g.getPosition().x+3, g.getBound("top")));
 
-        //remember to put each walkable no more than 5 points above the closest one
-        // the player might not be able to reach it
-        mario = new SuperMario(this, new Vec2(g.getBound("left")+2, g.getBound("top")+1));
-        setStepListener();
+        addStepListener(getStepListener());
     }
 
     @Override

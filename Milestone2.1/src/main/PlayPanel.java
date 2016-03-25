@@ -82,10 +82,10 @@ public class PlayPanel extends UserView {
             else{
                 g.drawString(a, getSize().width- a.length() * (titleFont.getSize()/2), 50);
             }
-            String s = "roses: "+world.getPlayer().getRosesCount()+"/"+world.getRoses();
+            String s = "roses: "+world.getActor().getRosesCount()+"/"+world.getRoses();
             g.drawString(s,getSize().width- s.length() * (titleFont.getSize()/2), 20);
         }
-        else if(world.currentLevel==6){
+        else if(world.currentLevel==7){
             titleColor= new Color(255,0,0);
             g.setColor(titleColor);
             g.setFont(warning);
